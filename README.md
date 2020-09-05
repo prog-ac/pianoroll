@@ -19,11 +19,24 @@ Tick は 1beat を 480 分割した単位です。
 | tick     | tick | 音の開始位置を表します           |
 | duration | tick | 音の開始位置からの長さを表します |
 
+データ構造
+
+```
+{
+  "bpm": 87,
+  "notes": [
+    { "note": 59, "tick": 720, "duration": 160 },
+    { "note": 61, "tick": 880, "duration": 80 },
+    ...
+  ]
+}
+```
+
 ## 問題１：JSON データに基づいて画像を生成してください(pianoroll)
 
 ### 仕様
 
-- データは ./seq.json です
+- データは `./seq.json` です
 - 横軸を時間(tick)、縦軸を音の高さ(note)とします
 - 横軸は、1 秒を 150 ピクセルとします
 - 縦軸は、1 で 20 ピクセルとします
@@ -38,8 +51,6 @@ Tick は 1beat を 480 分割した単位です。
 ```
 cd midi2image
 npm install
-curl https://s3-ap-northeast-1.amazonaws.com/prog-ac.assets/assets/wav.zip -o wav.zip
-unzip wav.zip
 ```
 
 ### ヒント
@@ -52,15 +63,19 @@ sample.png が生成結果です。
 
 ### 仕様
 
-- データは ./seq.json です
+- データは `./seq.json` です
+- 再生する音は`./wav/\${note}.wav` を使用してください
 - duration は使用しなくて大丈夫です
 - 音を止める必要はありません。(前の音と重なる感じになります)
+- `Lemon` が再生されます
 
 ### 開発
 
 ```
 cd midi2image
 npm install
+curl https://s3-ap-northeast-1.amazonaws.com/prog-ac.assets/assets/wav.zip -o wav.zip
+unzip wav.zip
 ```
 
 音再生ライブラリは以下を使用しています
