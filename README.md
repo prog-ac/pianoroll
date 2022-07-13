@@ -59,25 +59,3 @@ sample.png が生成結果です。
 
 [画像データについて](https://prog-ac.hatenablog.com/entry/2020/06/05/090612)
 
-## 問題２：JSON データに基づいて音を再生してください(playmidi)
-
-### 仕様
-
-- データは `./seq.json` です
-- 再生する音は`./wav/\${note}.wav` を使用してください
-- duration は使用しなくて大丈夫です
-- 音を止める必要はありません。(前の音と重なる感じになります)
-- `Lemon` が再生されます
-
-### 開発
-
-```
-cd midi2image
-npm install
-curl https://s3-ap-northeast-1.amazonaws.com/prog-ac.assets/assets/wav.zip -o wav.zip
-unzip wav.zip
-```
-
-音再生ライブラリは以下を使用しています
-
-[https://github.com/futomi/node-wav-player](https://github.com/futomi/node-wav-player)
